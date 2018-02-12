@@ -1,13 +1,22 @@
 {
-  "name": "WifiManager",
-  "keywords": "wifi, wi-fi",
-  "description": "ESP8266 WiFi Connection manager with fallback web configuration portal",
+  "name": "WifiManager [Baena]",
+  "keywords": "wifi, wi-fi, serial, monitor, captive, portal, setting",
+  "description": "ESP8266 WiFi Connection manager with web captive portal and serial monitor",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/tzapu/WiFiManager.git"
+    "url": "https://github.com/KEDARUMA-FANTASTIC/WiFiManager_Baena.git"
   },
+  "authors": [
+    {
+      "maintainer": true,
+      "name": "KEDARUMA FANTASTIC",
+      "url": "https://trello.com/b/Cinkg2yQ/%E9%9B%BB%E6%B0%97%E5%B7%A5%E4%BD%9C%E3%81%BE%E3%81%A8%E3%82%81-electronic-work",
+      "email": "kedaruma.fantastic@gmail.com"
+    }
+  ],
   "frameworks": "arduino",
   "platforms": "espressif8266",
-  "version": "0.12"
+  "version": "0.12_0.2"
 }
+
