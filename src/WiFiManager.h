@@ -1,3 +1,37 @@
+#pragma once
+
+/***
+'WiFiManager [Baena]' extended WiFiManager and implemented it.
+Therefore, we take over all the functions of the original WiFiManager.
+
+The main functions that have been extended are
+- Serial monitor
+- Persistence of Captive Portal
+- Custom Menu
+- Appearance of a modern site
+
+You will be able to do the following things
+- Operation can be confirmed at any time with a serial monitor from the mobile terminal.
+- Captive Portal permanence enables connection even without net environment.
+- It is possible to implement a dedicated device setting menu with the custom menu function.
+
+'WiFiManager [Baena]'はWiFiManagerを拡張して実装しました。
+從って、オリジナルのwifimanagerの機能を全て引き継いでいます。
+
+拡張した主な機能は
+- シリアルモニター
+- Captive Portalの永続化
+- カスタムメニュー
+- 今風なサイトの外観
+
+次の事が可能になります
+- モバイル端末からシリアルモニターでいつでも動作確認ができます。
+- Captive Portalの永続化によりネット環境が無くとも接続が可能。
+- カスタムメニュー機能で専用のデバイス設定メニューを実装する事が可能。
+
+Built by KEDARUMA-FANTASTIC https://github.com/KEDARUMA-FANTASTIC
+***/
+
 /**************************************************************
    WiFiManager is a library for the ESP8266/Arduino platform
    (https://github.com/esp8266/Arduino) to enable easy
@@ -10,8 +44,17 @@
    Licensed under MIT license
  **************************************************************/
 
-#ifndef WiFiManager_h
-#define WiFiManager_h
+/* setting platformio.ini
+// debug log enabled, serial0 is monitored
+// デバッグログ有効、serial0をモニター
+ build_flags = -g3 -D DEBUG=1 -D WIFIMAN_DEBUG=1 -D NO_GLOBAL_SERIAL -D USE_GLOBAL_HACK_SERIAL -D WIFIMAN_MONITOR_DEVICE=HKSerial
+// debug log enabled, serial1 is monitored
+// デバッグログ有効、serial1をモニター
+build_flags = -g3 -D DEBUG=1 -D WIFIMAN_DEBUG=1 -D NO_GLOBAL_SERIAL1 -D USE_GLOBAL_HACK_SERIAL1 -D WIFIMAN_MONITOR_DEVICE=HKSerial1
+// debug log disable, serial monitored disable
+// デバッグログ無効、シリアルモニター無効
+build_flags = -g3
+*/
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
@@ -22,18 +65,57 @@ extern "C" {
   #include "user_interface.h"
 }
 
-const char HTTP_HEAD[] PROGMEM            = "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"/><title>{v}</title>";
-const char HTTP_STYLE[] PROGMEM           = "<style>.c{text-align: center;} div,input{padding:5px;font-size:1em;} input{width:95%;} body{text-align: center;font-family:verdana;} button{border:0;border-radius:0.3rem;background-color:#1fa3ec;color:#fff;line-height:2.4rem;font-size:1.2rem;width:100%;} .q{float: right;width: 64px;text-align: right;} .l{background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEX///8EBwfBwsLw8PAzNjaCg4NTVVUjJiZDRUUUFxdiZGSho6OSk5Pg4eFydHTCjaf3AAAAZElEQVQ4je2NSw7AIAhEBamKn97/uMXEGBvozkWb9C2Zx4xzWykBhFAeYp9gkLyZE0zIMno9n4g19hmdY39scwqVkOXaxph0ZCXQcqxSpgQpONa59wkRDOL93eAXvimwlbPbwwVAegLS1HGfZAAAAABJRU5ErkJggg==\") no-repeat left center;background-size: 1em;}</style>";
-const char HTTP_SCRIPT[] PROGMEM          = "<script>function c(l){document.getElementById('s').value=l.innerText||l.textContent;document.getElementById('p').focus();}</script>";
-const char HTTP_HEAD_END[] PROGMEM        = "</head><body><div style='text-align:left;display:inline-block;min-width:260px;'>";
-const char HTTP_PORTAL_OPTIONS[] PROGMEM  = "<form action=\"/wifi\" method=\"get\"><button>Configure WiFi</button></form><br/><form action=\"/0wifi\" method=\"get\"><button>Configure WiFi (No Scan)</button></form><br/><form action=\"/i\" method=\"get\"><button>Info</button></form><br/><form action=\"/r\" method=\"post\"><button>Reset</button></form>";
-const char HTTP_ITEM[] PROGMEM            = "<div><a href='#p' onclick='c(this)'>{v}</a>&nbsp;<span class='q {i}'>{r}%</span></div>";
-const char HTTP_FORM_START[] PROGMEM      = "<form method='get' action='wifisave'><input id='s' name='s' length=32 placeholder='SSID'><br/><input id='p' name='p' length=64 type='password' placeholder='password'><br/>";
-const char HTTP_FORM_PARAM[] PROGMEM      = "<br/><input id='{i}' name='{n}' maxlength={l} placeholder='{p}' value='{v}' {c}>";
-const char HTTP_FORM_END[] PROGMEM        = "<br/><button type='submit'>save</button></form>";
-const char HTTP_SCAN_LINK[] PROGMEM       = "<br/><div class=\"c\"><a href=\"/wifi\">Scan</a></div>";
-const char HTTP_SAVED[] PROGMEM           = "<div>Credentials Saved<br />Trying to connect ESP to network.<br />If it fails reconnect to AP to try again</div>";
-const char HTTP_END[] PROGMEM             = "</div></body></html>";
+#ifdef WIFIMAN_MONITOR_DEVICE
+#include "HackSerial.h"
+#endif
+
+#if defined(WIFIMAN_MONITOR_DEVICE) && !defined(WIFIMAN_MONITOR_BUF_SIZE)
+#define WIFIMAN_MONITOR_BUF_SIZE  1024
+#endif
+
+#ifndef WIFIMAN_DEBUG
+#define WIFIMAN_DEBUG   1
+#endif
+#ifndef DEBUG
+#undef WIFIMAN_DEBUG
+#define WIFIMAN_DEBUG 0
+#endif
+
+#if (WIFIMAN_DEBUG)
+#define DEBUG_WM(...)      WiFiManager::_DEBUG_WM(__VA_ARGS__)
+#else
+#define DEBUG_WM(...)      do {} while(0)
+#endif
+
+// Frequently used character strings are shared and ROM and saved
+// よく使う文字列は共通化とROM化し節約する
+namespace wifiman_const {
+const char FS_CONTENT_LENGTH[] PROGMEM = "Content-Length";
+const char FS_LOCATION[] PROGMEM = "Location";
+const char FS_TEXT_HTML[] PROGMEM = "text/html";
+const char FS_TEXT_PLAIN[] PROGMEM = "text/plain";
+const char FS_HR[] PROGMEM = "{hr}";
+const char FS_SBJ[] PROGMEM = "{sbj}";
+const char FS_SB[] PROGMEM = "{sb}";
+const char FS_T[] PROGMEM = "{t}";
+const char FS_TT[] PROGMEM = "{tt}";
+const char FS_I[] PROGMEM = "{i}";
+const char FS_N[] PROGMEM = "{n}";
+const char FS_P[] PROGMEM = "{p}";
+const char FS_L[] PROGMEM = "{l}";
+const char FS_V[] PROGMEM = "{v}";
+const char FS_C[] PROGMEM = "{c}";
+const char FS_AIP[] PROGMEM = "{aip}";
+const char FS_IPT[] PROGMEM = "{ip}";
+const char FS_IP[] PROGMEM = "ip";
+const char FS_GW[] PROGMEM = "gw";
+const char FS_SN[] PROGMEM = "sn";
+const char FS_15[] PROGMEM = "15";
+const char FS_DEVICE_INFORMATION[] PROGMEM = "Device Information";
+#ifdef WIFIMAN_MONITOR_DEVICE
+const char FS_SERIAL_MONITOR[] PROGMEM = "Serial Monitor";
+#endif
+}
 
 #define WIFI_MANAGER_MAX_PARAMS 10
 
@@ -60,11 +142,12 @@ class WiFiManagerParameter {
     friend class WiFiManager;
 };
 
-
 class WiFiManager
 {
   public:
     WiFiManager();
+
+    virtual void  bindHandler();
 
     boolean       autoConnect();
     boolean       autoConnect(char const *apName, char const *apPassword = NULL);
@@ -72,6 +155,11 @@ class WiFiManager
     //if you want to always start the config portal, without trying to connect first
     boolean       startConfigPortal();
     boolean       startConfigPortal(char const *apName, char const *apPassword = NULL);
+
+    // Establish both AP and network connection
+    void          startConfigPortalMulti(char const *apName, char const *apPassword = NULL);
+    // Always call this member function with setup()
+    void          updateConfigPortalMulti();
 
     // get the AP name of the config portal, so it can be used in the callback
     String        getConfigPortalSSID();
@@ -110,7 +198,10 @@ class WiFiManager
     //if this is true, remove duplicated Access Points - defaut true
     void          setRemoveDuplicateAPs(boolean removeDuplicates);
 
-  private:
+    void setUseStaticIP(boolean isUse) { _is_use_static_ip = isUse; }
+    boolean isUseStaticIP() { return _is_use_static_ip; }
+
+  protected:
     std::unique_ptr<DNSServer>        dnsServer;
     std::unique_ptr<ESP8266WebServer> server;
 
@@ -152,11 +243,33 @@ class WiFiManager
     int           connectWifi(String ssid, String pass);
     uint8_t       waitForConnectResult();
 
-    void          handleRoot();
+    virtual const String get_html_head();
+    virtual const String get_css_style();
+    virtual const String get_script();
+    virtual const String get_html_head_end();
+    virtual const String get_html_root_page_header();
+    virtual const String get_html_child_page_header();
+    virtual const String get_html_menu_begin();
+    virtual const String get_html_menu_end();
+    virtual const String get_html_menu_item();
+    virtual const String get_html_root_page_menu_items();
+    virtual const String get_html_root_page_custom_menu_items();
+    virtual const String get_html_wifi_form_start();
+    virtual const String get_html_wifi_form_param();
+    virtual const String get_html_wifi_form_end();
+    virtual const String get_html_wifi_menu_scan();
+    virtual const String get_html_end();
+    virtual const String get_html_info();
+
+    virtual void set_current_value(String& str);
+    void handleCssStyle();
+    void handleScript();
+
+    virtual void  handleRoot();
     void          handleWifi(boolean scan);
     void          handleWifiSave();
     void          handleInfo();
-    void          handleReset();
+    void          handleReset(bool is_also_setting = false);
     void          handleNotFound();
     void          handle204();
     boolean       captivePortal();
@@ -179,16 +292,29 @@ class WiFiManager
     WiFiManagerParameter* _params[WIFI_MANAGER_MAX_PARAMS];
 
     template <typename Generic>
-    void          DEBUG_WM(Generic text);
+    static void _DEBUG_WM(Generic text);
 
     template <class T>
     auto optionalIPFromString(T *obj, const char *s) -> decltype(  obj->fromString(s)  ) {
       return  obj->fromString(s);
     }
     auto optionalIPFromString(...) -> bool {
-      DEBUG_WM("NO fromString METHOD ON IPAddress, you need ESP8266 core 2.1.0 or newer for Custom IP configuration to work.");
+      //DEBUG_WM("NO fromString METHOD ON IPAddress, you need ESP8266 core 2.1.0 or newer for Custom IP configuration to work.");
       return false;
     }
-};
 
+    boolean       _is_use_static_ip = false;
+    unsigned long _last_micros = 0;
+
+#ifdef WIFIMAN_MONITOR_DEVICE
+private:
+  String _mon_buf = "";
+  size_t serial_on_write_hook(uint8_t ch);
+public:
+  virtual const String get_script_monitor();
+  virtual const String get_html_serial_monitor();
+  virtual void handleSerialMon();
+  virtual void handleSerialMonIf();
+  virtual void handleScriptMon();
 #endif
+};

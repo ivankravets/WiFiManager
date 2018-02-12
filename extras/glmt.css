@@ -1,0 +1,615 @@
+/*CONTENT_BEGIN*/
+
+/*count 5
+*/
+
+/* green lantern mobile theme */
+
+body {
+  color: #fff;
+  /*font-family: 'Avenir Next';*/
+  /*font-family: 'Avenir';*/
+  /*font-family:Avenir;*/
+  font-family: 'Trebuchet MS';
+  /*font-family: 'Avenir Next Condensed';*/
+  /*font-family: "Avenir Next Condensed";*/
+  /*font-weight: lighter;*/
+  background: #1C3A54;
+  padding: 0;
+  margin: 0;
+  /*position: relative;*/
+}
+
+/*wifi status*/
+#st {
+  background: #329C9B;
+  justify-content: space-between;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  height: 15px;
+}
+
+#st li {
+  font-size: .6em;
+  list-style: none;
+  padding: 0 20px;
+  margin: 0;
+  text-decoration: none;
+}
+
+/*ip, ap address 表示*/
+#vs {
+  margin: -10px 0 0 0;
+  display: flex; /* 子要素をflexboxで揃える */
+  flex-direction: column; /* 子要素をflexboxにより縦方向に揃える */
+  justify-content: center; /* 子要素をflexboxにより中央に配置する */
+  align-items: left;  /* 子要素をflexboxにより中央に配置する */
+  /*width: 100px; !* 見た目用 *!*/
+  /*height: 50px; !* 見た目用 *!*/
+  /*border: 1px solid; !* 見た目用 *!*/
+}
+
+/*info 表示*/
+#in {
+  /*justify-content: space-between;*/
+  text-decoration: none;
+  padding: 8px 0 0 0;
+  margin: 0 auto;
+  /*display: flex;*/
+  width: 90%;
+  word-wrap: break-word;
+}
+
+#in h5 {
+  color: #cccccc;
+  display: block;
+  font-size: 1.0em;
+  padding: 0;
+  margin: 0;
+}
+
+#in h6 {
+  display: block;
+  font-size: 1.6em;
+  padding: 0 0 9px 8px;
+  margin: 0;
+  border-bottom: 1px solid #19334A;
+}
+
+/*small font*/
+.sf {
+  display: block;
+  font-size: 0.5em;
+}
+
+/*root header title*/
+#ht {
+  color: #fff;
+  font-size: 1.6em;
+  padding: 30px 0 15px 0;
+  margin: 0;
+  text-align: center;
+  background: #329C9B;
+}
+
+/*default text setting*/
+h1, h2, h3, h4, h5, h6, p {
+  color: #b0b0b0;
+  /*font-size: 1.1em;*/
+  padding: 10px 40px;
+  margin: 0;
+  font-weight: lighter;
+  /*display: inline-block;*/
+}
+
+/*navigation*/
+#nav {
+  border-bottom: 1px solid #19334A;
+  padding: 40px 0 20px 0;
+}
+
+/*navigation base*/
+#nav span {
+  justify-content: space-between;
+  text-decoration: none;
+  margin: 0 auto;
+  display: flex;
+  width: 90%;
+}
+
+/*icon button*/
+#nav span h5 {
+  padding: 0;
+  margin: 0;
+}
+
+/*icon text*/
+#nav span h6 {
+  color: #b0b0b0;
+  font-size: 1.1em;
+  padding: 5px 0 0 0;
+  margin: 0;
+  font-weight: lighter;
+  width: 65%
+}
+
+#nav span h5 a {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.8em;
+  margin: 0 3px 0 3px;
+  font-family: "Arial";
+  background: #50597b;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 20px;
+  width: 35px;
+  height: 35px;
+}
+
+#nav span h5 a:active {
+  background: #2A577E;
+}
+
+#ib {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.3em;
+  font-family: 'arial';
+  background: #50597b;
+
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 20px;
+
+  width: 35px;
+  height: 35px;
+}
+
+/*#hib a {*/
+/*}*/
+
+#hib a:active {
+  background: #2A577E;
+}
+
+/*menu box list*/
+.mbl {
+  background: #1C3A54;
+}
+
+.mbl ul {
+  padding: 0;
+  margin: 0;
+}
+
+.mbl li a {
+  text-decoration: none;
+  display: block;
+  color: #FFF;
+  font-size: 1.6em;
+  border-bottom: 1px solid #19334A;
+  padding: 20px 40px;
+}
+
+.mbl li a:hover, .mbl li.active a {
+  background: #2A577E;
+}
+
+/*wifi strength*/
+.ws {
+  float: right;
+}
+
+/*basic input*/
+input[type="text"], input[type="password"] {
+  display: block;
+  padding: 40px 10px 10px 10px;
+  color: #FFF;
+  font-size: 1.0em;
+  background: none;
+  outline: none;
+  border: none;
+  margin: 0 auto;
+  width: 60%;
+  opacity: .7;
+  border-bottom: 2px solid #304E68;
+  border-radius: 0;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, input[type="range"]:hover, input[type="submit"]:hover {
+  opacity: 1;
+}
+
+input[type="submit"] {
+  display: block;
+  padding: 15px;
+  margin: 50px auto;
+  color: #FFF;
+  font-size: 1em;
+  border: none;
+  outline: none;
+  background: #11a8ab;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  width: 65%;
+  /*opacity: .7;*/
+}
+
+
+
+/*/////////*/
+
+/*menu box list*/
+#m {
+  display: flex;
+  /*background-color: #1fa3ec;*/
+  /*background: #1C3A54;*/
+}
+
+/*basic input*/
+#m input[type="text"] {
+  display: block;
+  font-family: Courier;
+
+  padding: 10px 10px 10px 10px;
+  color: #FFF;
+  font-size: 1.0em;
+  background: none;
+  outline: none;
+  border: none;
+  margin: 0 auto;
+  width: 90%;
+  opacity: .7;
+  border-bottom: 2px solid #304E68;
+  border-radius: 0;
+}
+
+#m a {
+  display: block;
+  padding: 8px;
+  margin: 0 10px 0 0;
+  color: #FFF;
+  font-size: 0.7em;
+  border: none;
+  outline: none;
+  background: #11a8ab;
+  border-radius: 25px;
+  -webkit-appearance: none;
+  height: 25px;
+  width: 25px;
+  opacity: .8;
+  line-height: 26px;
+}
+
+#m a:hover {
+  opacity: 1;
+}
+
+/*textarea {*/
+  /*display:       block;*/
+  /*padding:       0px 0px 0px 0px;*/
+  /*color:         #49ff02;*/
+  /*font-size:     1.0em;*/
+  /*background:    none;*/
+  /*outline:       none;*/
+  /*border:        none;*/
+  /*margin:        0 auto;*/
+  /*width:         100%;*/
+  /*resize: vertical;*/
+  /*!*overflow: scroll;*!*/
+  /*text-wrap: none;*/
+  /*overflow: visible;*/
+  /*!*min-height: 100%;*!*/
+  /*!*max-height: 100%;*!*/
+  /*!*opacity: .7;*!*/
+  /*!*border-radius: 0;*!*/
+  /*!*height: 100vh;*!*/
+  /*height:        300px;*/
+/*}*/
+
+#mv {
+  /*font-family: 'Monaco', 'Consolas', 'Courier New', Courier, monospace, sans-serif;*/
+  font-family: Courier;
+  display:       block;
+  padding:       0px 0px 0px 0px;
+  color:         #49ff02;
+  font-size:     0.6em;
+  background:    none;
+  outline:       none;
+  border:        none;
+  margin:        0 auto;
+  width:         100%;
+  /*resize: vertical;*/
+  overflow: scroll;
+  /*overflow-x: scroll;*/
+  /*overflow-y: scroll;*/
+  /*overflow-scrolling: auto;*/
+  text-wrap: none;
+  /*overflow-wrap: revert;*/
+  /*wrap-option: 1;*/
+  /*word-wrap: revert;*/
+  /*flex-wrap: revert;*/
+  /*white-space: nowrap;*/
+
+  /*min-height: 100%;*/
+  /*max-height: 100%;*/
+  /*opacity: .7;*/
+  /*border-radius: 0;*/
+  /*height: 100vh;*/
+  height:        300px;
+  /*resize: none;*/
+  -webkit-overflow-scrolling: touch;
+}
+
+/*#mv.inputtext {*/
+  /*overflow-y: hidden;*/
+  /*overflow-x: scroll;*/
+  /*resize: none;*/
+  /*height:1.8em;*/
+/*}*/
+
+
+/*///////*/
+
+
+/* The slider itself */
+input[type="range"] {
+  display: block;
+  margin: 20px auto;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 75%;
+  height: 2px; /* Specified height */
+  background: #304E68;
+  outline: none; /* Remove outline */
+  opacity: .7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* .2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 50%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #11a8ab;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+/*check box*/
+.cb, .rb {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-left: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  /*font-size: 22px;*/
+  font-size: 1.2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.cb input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Create a custom checkbox */
+.cb .cm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+/* On mouse-over, add a grey background color */
+.cb:hover input ~ .cm {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.cb input:checked ~ .cm {
+  background-color: #11a8ab;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.cb .cm:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.cb input:checked ~ .cm:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.cb .cm:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*radio button*/
+/*.rb {*/
+/*display: block;*/
+/*position: relative;*/
+/*padding-left: 35px;*/
+/*margin-bottom: 12px;*/
+/*cursor: pointer;*/
+/*font-size: 22px;*/
+/*-webkit-user-select: none;*/
+/*-moz-user-select: none;*/
+/*-ms-user-select: none;*/
+/*user-select: none;*/
+/*}*/
+
+/* Hide the browser's default radio button */
+.rb input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.rb .cm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.rb:hover input ~ .cm {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.rb input:checked ~ .cm {
+  background-color: #11a8ab;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.rb .cm:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.rb input:checked ~ .cm:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.rb .cm:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+#sl {
+  padding: 0;
+  margin: 50px auto;
+  /*color: #FFF;*/
+  /*font-size: 1em;*/
+  /*text-transform: uppercase;*/
+  /*cursor: pointer;*/
+  /*border: none;*/
+  /*outline: none;*/
+  background: #11a8ab;
+  /*border-radius: 5px;*/
+  /*-webkit-appearance: none;*/
+  width: 65%;
+  height: 50px;
+  /*opacity: .7;*/
+  /*-webkit-border-radius: 5px;*/
+  /*-moz-border-radius: 5px;*/
+  /*-o-border-radius: 5px;*/
+  /*-webkit-transition: all .5s ease-in-out;*/
+  /*-moz-transition: all .5s ease-in-out;*/
+  /*-o-transition: all .5s ease-in-out;*/
+  /*transition: all .5s ease-in-out;*/
+  /*-webkit-apperance: none;*/
+}
+
+/*select box*/
+select {
+  color: #FFF;
+  font-size: 1.1em;
+  padding: 10px;
+  margin: 0 0 0 0;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  width: 87%;
+  height: 100%;
+  /*background: #ab161f;*/
+  border-radius: 0;
+}
+
+#sl:after {
+  content: "";
+  position: absolute;
+  margin: 22px 0 0 0;
+  /*top: 14px;*/
+  /*right: 10px;*/
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*event mask screen*/
+#em {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, .8);
+  overflow-x: hidden;
+  transition: .5s;
+  pointer-events: none;
+  align-items: center;
+}
+
+#ld {
+  display: inline-block;
+  margin: 0 auto;
+  border: 2px solid #1C3A54;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 2px solid #11a8ab;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*CONTENT_END*/
