@@ -5,13 +5,13 @@
 #include <Arduino.h>
 #include "my_wifi_manager.h"
 
-#define HD(...) #__VA_ARGS__
-
 namespace {
 
 // Access point name
+// アクセスポイント名
 const char ap_name_[] PROGMEM = "MY ESP8266";
 // Access point authentication password
+// 認証パスワード
 const char ap_passwd_[] PROGMEM = "12345678";
 
 MyWifiManager wifi_manager_;
@@ -29,15 +29,6 @@ void setup()
 
   Serial.begin(9600);
   Serial.println("\n\n\nhello!!!");
-
-//  Serial1.begin(9600);
-//  Serial1.println("\n\n\nhello!!!");
-
-  const char* ptr1 = "";
-  const char* ptr2 = "";
-
-  Serial.println((uint32_t)ptr1);
-  Serial.println((uint32_t)ptr2);
 
   pinMode(LED_BUILTIN, OUTPUT);
 

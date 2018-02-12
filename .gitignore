@@ -3,3 +3,8 @@
 .piolibdeps
 CMakeListsPrivate.txt
 cmake-build-debug
+CMakeLists.txt
+extras/index.html
+extras/contrib/closure-compiler/closure-compiler-v20180101.jar
+extras/contrib/closure-compiler/COPYING
+lib/readme.txt
