@@ -1,5 +1,37 @@
 #pragma once
 
+/***
+'WiFiManager [Baena]' extended WiFiManager and implemented it.
+Therefore, we take over all the functions of the original WiFiManager.
+
+The main functions that have been extended are
+- Serial monitor
+- Persistence of Captive Portal
+- Custom Menu
+- Appearance of a modern site
+
+You will be able to do the following things
+- Operation can be confirmed at any time with a serial monitor from the mobile terminal.
+- Captive Portal permanence enables connection even without net environment.
+- It is possible to implement a dedicated device setting menu with the custom menu function.
+
+'WiFiManager [Baena]'はWiFiManagerを拡張して実装しました。
+從って、オリジナルのwifimanagerの機能を全て引き継いでいます。
+
+拡張した主な機能は
+- シリアルモニター
+- Captive Portalの永続化
+- カスタムメニュー
+- 今風なサイトの外観
+
+次の事が可能になります
+- モバイル端末からシリアルモニターでいつでも動作確認ができます。
+- Captive Portalの永続化によりネット環境が無くとも接続が可能。
+- カスタムメニュー機能で専用のデバイス設定メニューを実装する事が可能。
+
+Built by KEDARUMA-FANTASTIC https://github.com/KEDARUMA-FANTASTIC
+***/
+
 /**************************************************************
    WiFiManager is a library for the ESP8266/Arduino platform
    (https://github.com/esp8266/Arduino) to enable easy
@@ -14,10 +46,13 @@
 
 /* setting platformio.ini
 // debug log enabled, serial0 is monitored
-build_flags = -g3 -D DEBUG=1 -D WIFIMAN_DEBUG=1 -D NO_GLOBAL_SERIAL -D USE_GLOBAL_HACK_SERIAL -D WIFIMAN_MONITOR_DEVICE=HKSerial
+// デバッグログ有効、serial0をモニター
+ build_flags = -g3 -D DEBUG=1 -D WIFIMAN_DEBUG=1 -D NO_GLOBAL_SERIAL -D USE_GLOBAL_HACK_SERIAL -D WIFIMAN_MONITOR_DEVICE=HKSerial
 // debug log enabled, serial1 is monitored
+// デバッグログ有効、serial1をモニター
 build_flags = -g3 -D DEBUG=1 -D WIFIMAN_DEBUG=1 -D NO_GLOBAL_SERIAL1 -D USE_GLOBAL_HACK_SERIAL1 -D WIFIMAN_MONITOR_DEVICE=HKSerial1
 // debug log disable, serial monitored disable
+// デバッグログ無効、シリアルモニター無効
 build_flags = -g3
 */
 
@@ -81,13 +116,6 @@ const char FS_DEVICE_INFORMATION[] PROGMEM = "Device Information";
 const char FS_SERIAL_MONITOR[] PROGMEM = "Serial Monitor";
 #endif
 }
-
-// These defines are assumed to be specified on the command line
-// これらのデファインはコマンドラインで指定される事を想定しています
-// ex. -D WIFIMAN_MONITOR_DEVICE=Serial -D WIFIMAN_MONITOR_DEVICE=1 -D WIFIMAN_DEBUG=1 -D NO_GLOBAL_INSTANCES
-
-// When using WiFiManager's serial monitor please define "NO_GLOBAL_INSTANCES" on the command line
-// WiFiManagerのシリアルモニターを使用する場合はコマンドラインで"NO_GLOBAL_INSTANCES"を定義してください
 
 #define WIFI_MANAGER_MAX_PARAMS 10
 
