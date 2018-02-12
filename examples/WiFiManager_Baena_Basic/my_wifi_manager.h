@@ -17,12 +17,13 @@ class MyWifiManager : public WiFiManager {
  private:
   virtual void bindHandler() override;
   const String get_html_root_page_custom_menu_items() override;
+  int http_test(String host);
   void handle_custom_setting_from();
   void handle_custom_setting_store();
   void handle_custom_ping_test();
   void handle_custom_wifi_setting_reset();
 
-  String ping_host_ = "google.com";
+  String ping_host_ = "http://google.com";
   String ping_result_ = "";
   uint32_t interval_ = 1000;
 };

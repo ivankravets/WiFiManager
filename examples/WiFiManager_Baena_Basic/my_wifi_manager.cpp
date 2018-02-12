@@ -3,7 +3,7 @@
 //
 
 #include "my_wifi_manager.h"
-#include <ESP8266Ping.h>
+#include <ESP8266HTTPClient.h>
 
 using namespace wifiman_const;
 
@@ -17,9 +17,9 @@ const char CUSTOM_SETTING_FROM[] PROGMEM = R"HEREDOC(
 </form>
 
 <form action='/custom_setting_ping_test' method='get'>
-  <p>Ping result : {result}</p>
-  <input type="text" name='host' placeholder='Ping host' value='{host}'><br/>
-  <input type="submit" onclick="oem()" value="Ping!">
+  <p>Result HTTP Code: {result}</p>
+  <input type="text" name='host' placeholder='Host' value='{host}'><br/>
+  <input type="submit" onclick="oem()" value="HTTP Test">
 </form>
 
 <h2><br><br>View Component Sample</h2>
@@ -96,6 +96,14 @@ const String MyWifiManager::get_html_root_page_custom_menu_items() {
   return menu_item;
 }
 
+int MyWifiManager::http_test(String host) {
+  HTTPClient http;
+  http.begin(host);
+  auto code = http.GET();
+  http.end();
+  return code;
+}
+
 void MyWifiManager::handle_custom_setting_from() {
   DEBUG_WM(__PRETTY_FUNCTION__);
 
@@ -131,8 +139,9 @@ void MyWifiManager::handle_custom_ping_test() {
 
   ping_host_ = server->arg(F("host"));
   DEBUG_WM(String("ping host = " + ping_host_));
-  bool ret = Ping.ping(ping_host_.c_str(), 1);
-  ping_result_ = ret ? F("SUCCESS") : F("FAILED");
+  auto code = http_test(ping_host_);
+  ping_result_ = String(code);
+  DEBUG_WM("result http code = " + code);
 
   server->sendHeader(FPSTR(FS_LOCATION), F("/custom_setting_from"), true);
   server->send(303, FPSTR(FS_TEXT_PLAIN), "");
@@ -156,3 +165,4 @@ void MyWifiManager::bindHandler() {
   server->on("/custom_setting_ping_test", std::bind(&MyWifiManager::handle_custom_ping_test, this));
   server->on("/custom_setting_wifi_setting_reset", std::bind(&MyWifiManager::handle_custom_wifi_setting_reset, this));
 }
+
