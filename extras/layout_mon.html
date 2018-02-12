@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="glmt.css">
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{t}</title>
+</head>
+<body>
+
+<!--ELEM_BEGIN SERIAL_MONITOR-->
+<div id="nav">
+    <span>
+        <h5><a href="/" onclick="oem()">🏠</a></h5>
+        <h6>{tt}</h6>
+        <h5><a onclick="pp(this)">⏸️</a></h5>
+        <h5><a onclick="cl()">🗑️</a></h5>
+    </span>
+</div>
+<div id="m">
+<input id="mi" type='text' placeholder='INPUT'><a onclick="sd()">SEND</a>
+</div>
+
+<textarea readonly="readonly" id="mv" wrap="off">
+</textarea>
+
+<script type="text/javascript" src="glmt_mon.js"></script>
+
+<!--ELEM_END SERIAL_MONITOR-->
+
+<script type="text/javascript" src="glmt.js"></script>
+</body>
+</html>

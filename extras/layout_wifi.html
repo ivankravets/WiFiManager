@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="glmt.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{t}</title>
+</head>
+<body>
+
+<!--ELEM_BEGIN CHILD_PAGE_HEADER-->
+<div id="nav">
+    <span>
+        <h5><a href="/" onclick="oem()">🏠</a></h5>
+        <h6>{tt}</h6>
+        <h5 id="sm"><a href="{hr}" onclick="oem()" onclick="oem()">{sb}</a></h5>
+    </span>
+</div>
+<!--ELEM_END CHILD_PAGE_HEADER-->
+
+<div class="mbl">
+  <ul>
+    <li><a href="#" onclick="c(this)">aguazone1<span class="ws">14%</span></a></li>
+    <li><a href="#" onclick="c(this)">aguazone2<span class="ws">31%</span></a></li>
+    <li><a href="#" onclick="c(this)">aguazone3<span class="ws">98%</span></a></li>
+<!--ELEM_BEGIN WIFI_MENU_SCAN_ITEM-->
+    <li><a href="#p" onclick="c(this)">{v}<span class="ws">{r}%</span></a></li>
+<!--ELEM_END WIFI_MENU_SCAN_ITEM-->
+  </ul>
+</div>
+
+
+<!--ELEM_BEGIN WIFI_FROM_START-->
+<form method='get' action='wifisave'>
+  <input id='s' name='s' length=32 type='text' placeholder='SSID'>
+  <input id='p' name='p' length=64 type='password' placeholder='password'>
+  <!--ELEM_END WIFI_FROM_START-->
+
+  <!--ELEM_BEGIN WIFI_FROM_PARAM-->
+  <input id='{i}' name='{n}' length={l} type='text' placeholder='{p}' value='{v}' {c}>
+  <!--ELEM_END WIFI_FROM_PARAM-->
+
+  <!--ELEM_BEGIN WIFI_FROM_END-->
+  <input type="submit" onclick="oem()" value="Connection">
+</form>
+<!--ELEM_END WIFI_FROM_END-->
+
+<!--<input type="text" id="s" placeholder="SSID" value="">-->
+<!--<input type="password" placeholder="Password" value="">-->
+<input type="submit" value="Connection">
+
+
+<h2><br><br>View Component Sample</h2>
+
+<h3><br><br>Slider<br></h3>
+<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+
+<h3><br><br>Selector</h3>
+<div id="sl">
+  <select name="horoscope" size="12">
+    <option value="Aries">おひつじ座</option>
+    <option value="Taurus">おうし座</option>
+    <option value="Gemini">ふたご座</option>
+    <option value="Cancer">かに座</option>
+    <option value="Leo">しし座</option>
+    <option value="Virgo">おとめ座</option>
+    <option value="Libra">てんびん座</option>
+    <option value="Scorpio">さそり座</option>
+    <option value="Saggitarius">いて座</option>
+    <option value="Capricorn">やぎ座</option>
+    <option value="Aquarius">みずがめ座</option>
+    <option value="Pisces">うお座</option>
+  </select>
+</div>
+
+<!--check box-->
+<h3>Check Buttons</h3>
+<label class="cb">One
+  <input type="checkbox" checked="checked">
+  <span class="cm"></span>
+</label>
+<label class="cb">Two
+  <input type="checkbox">
+  <span class="cm"></span>
+</label>
+
+<label class="cb">Three
+  <input type="checkbox">
+  <span class="cm"></span>
+</label>
+
+<label class="cb">Four
+  <input type="checkbox">
+  <span class="cm"></span>
+</label>
+
+<!--radio button-->
+<h3><br>Radio Buttons</h3>
+<label class="rb">One
+  <input type="radio" checked="checked" name="radio">
+  <span class="cm"></span>
+</label>
+<label class="rb">Two
+  <input type="radio" name="radio">
+  <span class="cm"></span>
+</label>
+<label class="rb">Three
+  <input type="radio" name="radio">
+  <span class="cm"></span>
+</label>
+<label class="rb">Four
+  <input type="radio" name="radio">
+  <span class="cm"></span>
+</label>
+
+
+
+
+
+<div id="em" class="em">
+  <div class="ld"></div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript" src="glmt.js"></script>

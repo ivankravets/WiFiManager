@@ -1,0 +1,68 @@
+<!--ELEM_BEGIN HTML_HEADER-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="glmt.css">
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{t}</title>
+<!--ELEM_END HTML_HEADER-->
+</head>
+<body>
+
+<!--ELEM_BEGIN ROOT_PAGE_HEADER-->
+<p id="ht">{t}</p>
+<ul id="st">
+  <li>WiFi : {conn}</li>
+  <li><div id="vs">
+      <div>AP : {aip}</div>
+      <div>IP : {ip}</div>
+  </div>
+  </li>
+</ul>
+<!--ELEM_END ROOT_PAGE_HEADER-->
+
+<!--ELEM_BEGIN MENU_BEGIN-->
+<div class="mbl">
+  <ul>
+<!--ELEM_END MENU_BEGIN-->
+<!--ELEM_BEGIN ROOT_MENU_ITEMS-->
+    <li><a href="/wifi" onclick="oem()"><span>Configure WiFi</span></a></li>
+    <li><a href="/0wifi" onclick="oem()"><span>Configure WiFi</span><span class="sf">(No Scan)</span></a></li>
+    {co}
+    <li><a href="/i" onclick="oem()"><span>Info</span></a></li>
+    <li><a href="/r" onclick="oem()"><span>Reset</span></a></li>
+    <li><a href="/rst" onclick="oem()"><span>Setting Reset</span></a></li>
+<!--ELEM_END ROOT_MENU_ITEMS-->
+<!--ELEM_BEGIN MENU_END-->
+  </ul>
+</div>
+<!--ELEM_END MENU_END-->
+
+<div class="mbl">
+  <ul>
+<!--ELEM_BEGIN MENU_ITEM-->
+    <li><a href="{hr}" onclick="oem()">{sbj}</a></li>
+<!--ELEM_END MENU_ITEM-->
+  </ul>
+</div>
+
+<p>1234Abcdefg</p>
+<h1>1234Abcdefg</h1>
+<h2>1234Abcdefg</h2>
+<h3>1234Abcdefg</h3>
+<h4>1234Abcdefg</h4>
+<h5>1234Abcdefg</h5>
+<h6>1234Abcdefg</h6>
+
+<!--ELEM_BEGIN HTML_END-->
+<!--event mask screen-->
+<div id="em">
+<!--loader circle-->
+  <div id="ld"></div>
+</div>
+<script type="text/javascript" src="glmt.js"></script>
+</body>
+</html>
+<!--ELEM_END HTML_END-->
