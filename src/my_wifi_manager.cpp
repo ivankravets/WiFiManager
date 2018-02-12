@@ -5,19 +5,11 @@
 #include "my_wifi_manager.h"
 #include <ESP8266Ping.h>
 
-// here document magic macro
-#define HD(...) #__VA_ARGS__
-
 using namespace wifiman_const;
 
 namespace {
 
-//
-// custom html content
-//
-
 // custom setting form
-
 const char CUSTOM_SETTING_FROM[] PROGMEM = R"HEREDOC(
 <form action='/custom_setting_store' method='get'>
   <input type="text" name='interval' placeholder='Blink interval(millisec)' value='{interval}'><br/>
@@ -124,8 +116,6 @@ void MyWifiManager::handle_custom_setting_from() {
   page += get_html_end();
   server->sendHeader(FPSTR(FS_CONTENT_LENGTH), String(page.length()));
   server->send(200, FPSTR(FS_TEXT_HTML), page);
-
-  DEBUG_WM(F("Sent info page"));
 }
 
 void MyWifiManager::handle_custom_setting_store() {
@@ -140,7 +130,7 @@ void MyWifiManager::handle_custom_ping_test() {
   DEBUG_WM(__PRETTY_FUNCTION__);
 
   ping_host_ = server->arg(F("host"));
-  DEBUG_WM("ping host = " + ping_host_);
+  DEBUG_WM(String("ping host = " + ping_host_));
   bool ret = Ping.ping(ping_host_.c_str(), 1);
   ping_result_ = ret ? F("SUCCESS") : F("FAILED");
 
